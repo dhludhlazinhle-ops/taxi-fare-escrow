@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 /// @title Taxi Rank Fare Escrow
 /// @notice Holds a commuter's fare in escrow until both parties confirm the trip is complete.
-/// @dev Day 2 version: adds two-sided confirmation and automatic fare release.
+/// @dev Day 3 version: adds dispute state. Dispute resolution itself is out of scope for now.
 contract TaxiFareEscrow {
     enum TripState {
         Created,
@@ -35,6 +35,8 @@ contract TaxiFareEscrow {
     event TripConfirmed(uint256 indexed tripId, address indexed confirmedBy);
 
     event TripCompleted(uint256 indexed tripId, address indexed driver, uint256 fare);
+
+    event TripDisputed(uint256 indexed tripId, address indexed raisedBy);
 
     /// @notice Commuter starts a trip by depositing the fare for a named driver.
     /// @param driver The wallet address of the driver for this trip.
@@ -86,6 +88,25 @@ contract TaxiFareEscrow {
         }
     }
 
+    /// @notice Called by either the commuter or the driver to flag a problem with the trip.
+    /// @dev Freezes the trip: no further confirmations and no fare release are possible
+    ///      once disputed. Resolving a dispute is out of scope for this version.
+    /// @param tripId The id of the trip being disputed.
+    function raiseDispute(uint256 tripId) external {
+        Trip storage trip = trips[tripId];
+
+        require(trip.commuter != address(0), "Trip does not exist");
+        require(trip.state == TripState.Created, "Trip is not open for dispute");
+        require(
+            msg.sender == trip.commuter || msg.sender == trip.driver,
+            "Only the commuter or driver can dispute this trip"
+        );
+
+        trip.state = TripState.Disputed;
+
+        emit TripDisputed(tripId, msg.sender);
+    }
+
     /// @dev Internal function: sends the fare to the driver and marks the trip completed.
     ///      Only ever called once both sides have confirmed.
     function _releaseFare(uint256 tripId) internal {
@@ -108,5 +129,6 @@ contract TaxiFareEscrow {
     }
 
     // --- Coming in later commits ---
-    // function raiseDispute(uint256 tripId) external { ... }
+    // basic tests (Day 4)
+    // testnet deployment (Day 5)
 }
