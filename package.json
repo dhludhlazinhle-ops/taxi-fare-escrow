@@ -1,0 +1,31 @@
+{
+  "name": "taxi-fare-escrow",
+  "version": "1.0.0",
+  "description": "A Solidity smart contract that holds a commuter's taxi fare in escrow and only\r releases it to the driver once both the commuter and the driver confirm the\r trip is complete. Built as part of the Africa's Blockchain Club (ABC) prep\r track, using Cyfrin Updraft's Blockchain Basics and Solidity courses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhludhlazinhle-ops/taxi-fare-escrow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/dhludhlazinhle-ops/taxi-fare-escrow/issues"
+  },
+  "homepage": "https://github.com/dhludhlazinhle-ops/taxi-fare-escrow#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "^3.1.8",
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.7",
+    "@types/node": "^22.20.1",
+    "chai": "^6.2.2",
+    "forge-std": "github:foundry-rs/forge-std#v1.9.4",
+    "hardhat": "^3.12.0",
+    "typescript": "~6.0.3",
+    "viem": "^2.55.10"
+  }
+}

@@ -44,7 +44,7 @@ written all at once. See commit history for the actual build order.
 - [x] Day 1 — repo scaffold, trip creation + fare deposit
 - [x] Day 2 — confirmation logic + automatic release on double confirmation
 - [x] Day 3 — dispute state
-- [ ] Day 4 — basic tests
+- [x] Day 4 — basic tests
 - [ ] Day 5 — testnet deployment, polish
 
 ## Tech
