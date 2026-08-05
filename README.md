@@ -44,8 +44,16 @@ written all at once. See commit history for the actual build order.
 - [x] Day 1 — repo scaffold, trip creation + fare deposit
 - [x] Day 2 — confirmation logic + automatic release on double confirmation
 - [x] Day 3 — dispute state
-- [x] Day 4 — basic tests
-- [ ] Day 5 — testnet deployment, polish
+- [x] Day 4 — Hardhat test suite (trip creation, confirmation, access control, disputes)
+- [ ] Day 5 — testnet deployment (stretch goal, to be completed before 30 Oct)
+
+## Running the tests
+
+npm install
+npx hardhat test
+
+All 4 tests should pass, covering trip creation, two-sided confirmation,
+access control, and the dispute flow.
 
 ## Tech
 
